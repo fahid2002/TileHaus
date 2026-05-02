@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" width="240" height="56">
+  <!-- Tile icon -->
+  <rect x="0" y="4" width="20" height="20" fill="#c87941" rx="2"/>
+  <rect x="22" y="4" width="20" height="20" fill="#a0522d" rx="2"/>
+  <rect x="0" y="26" width="20" height="20" fill="#a0522d" rx="2"/>
+  <rect x="22" y="26" width="20" height="20" fill="#c87941" rx="2"/>
+  <!-- Gloss -->
+  <rect x="0" y="4" width="8" height="3" fill="rgba(255,255,255,0.2)" rx="1"/>
+  <rect x="22" y="4" width="8" height="3" fill="rgba(255,255,255,0.2)" rx="1"/>
+  <rect x="0" y="26" width="8" height="3" fill="rgba(255,255,255,0.2)" rx="1"/>
+  <rect x="22" y="26" width="8" height="3" fill="rgba(255,255,255,0.2)" rx="1"/>
+  <!-- Text light on dark -->
+  <text x="52" y="38" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" fill="#fdf6ee" letter-spacing="-1">Tile</text>
+  <text x="108" y="38" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" fill="#c87941" letter-spacing="-1">Haus</text>
+</svg>

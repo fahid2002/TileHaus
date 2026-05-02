@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <pattern id="nfp" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#f4ede2"/>
+      <rect x="0.5" y="0.5" width="19" height="19" fill="none" stroke="#e5d8c5" stroke-width="0.5"/>
+    </pattern>
+    <linearGradient id="crack-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c8b898"/>
+      <stop offset="100%" stop-color="#a89870"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main tile background -->
+  <rect x="20" y="20" width="160" height="160" rx="12" fill="url(#nfp)"/>
+  <rect x="20" y="20" width="160" height="160" rx="12" fill="none" stroke="#d8ccb8" stroke-width="1.5"/>
+
+  <!-- Crack lines - main diagonal -->
+  <path d="M60 40 L90 80 L70 120 L110 165" stroke="url(#crack-g)" stroke-width="2.5"
+        fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Secondary cracks branching -->
+  <path d="M90 80 L130 70" stroke="#c8b898" stroke-width="1.5"
+        fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M70 120 L40 130" stroke="#c8b898" stroke-width="1.5"
+        fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M110 165 L140 145" stroke="#c8b898" stroke-width="1.2"
+        fill="none" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Broken tile chip at bottom -->
+  <path d="M95 158 L110 165 L105 180 L88 175Z" fill="#e5d8c5" stroke="#c8b898" stroke-width="1"/>
+
+  <!-- Shadow on crack -->
+  <path d="M61 41 L91 81 L71 121 L111 166" stroke="rgba(0,0,0,0.08)" stroke-width="4"
+        fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M60 40 L90 80 L70 120 L110 165" stroke="url(#crack-g)" stroke-width="2.5"
+        fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

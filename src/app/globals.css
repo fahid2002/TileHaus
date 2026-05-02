@@ -1,26 +1,70 @@
 @import "tailwindcss";
+@import "@heroui/styles";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-background-primary: #faf7f4;
+  --color-background-secondary: #f0ebe4;
+  --color-background-tertiary: #e8e0d5;
+  --color-text-primary: #1c140d;
+  --color-text-secondary: #6b5744;
+  --color-border-tertiary: #d4c4b0;
+  --color-accent: #b5651d;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+}
+
+/* Marquee animation */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  gap: 40px;
+  white-space: nowrap;
+  animation: scroll 18s linear infinite;
+}
+
+/* Swiper custom styles */
+.swiper-pagination-bullet-active {
+  background: #b5651d !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #b5651d !important;
+}
+
+/* In stock badge */
+.in-stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #2d6b2d;
+  background: #e3f0e3;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+.in-stock::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #2d6b2d;
+  border-radius: 50%;
+  display: block;
 }

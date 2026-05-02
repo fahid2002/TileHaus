@@ -34,3 +34,41 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+# TileHaus – Tile Gallery
+
+A premium tile gallery web application built with Next.js App Router.
+
+## 🌐 Live URL
+https://tilehaus.vercel.app
+
+## 📌 Purpose
+TileHaus is a curated platform for discovering, browsing, and exploring premium tiles including ceramic, marble, mosaic, porcelain, terracotta, and zellige designs.
+
+## ✨ Key Features
+- Tile gallery with search and category filtering
+- Swiper.js animated carousel on home and tile detail pages
+- Authentication with email/password and Google OAuth (BetterAuth)
+- Protected routes for tile details and user profile
+- Profile update (name and image URL via BetterAuth updateUser)
+- Responsive design for mobile, tablet and desktop
+- Marquee text animation on home page
+- Custom 404 and loading UI
+
+## 📦 NPM Packages Used
+- `@heroui/react` – UI component library
+- `swiper` – SwiperJS React for animated carousel
+- `better-auth` – Authentication with MongoDB adapter
+- `mongoose` – MongoDB object modeling
+- `react-hot-toast` – Toast notifications
+- `framer-motion` – Required peer dependency for HeroUI
+
+## 🔐 Environment Variables
+See `.env.local`:
+- `MONGODB_URI`
+- `BETTER_AUTH_SECRET`
+- `BETTER_AUTH_URL`
+- `NEXT_PUBLIC_APP_URL`
+- `GOOGLE_CLIENT_ID`
+- `GOOGLE_CLIENT_SECRET`

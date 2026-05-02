@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <defs>
+    <pattern id="slate" x="0" y="0" width="150" height="150" patternUnits="userSpaceOnUse">
+      <rect width="150" height="150" fill="#1a1a1e"/>
+      <rect x="2" y="2" width="146" height="146" fill="#22222a"/>
+      <!-- Natural cleft texture lines -->
+      <line x1="0" y1="35" x2="150" y2="30" stroke="#2a2a35" stroke-width="1.5"/>
+      <line x1="0" y1="70" x2="150" y2="68" stroke="#282830" stroke-width="1"/>
+      <line x1="0" y1="105" x2="150" y2="100" stroke="#2a2a35" stroke-width="1.5"/>
+      <line x1="0" y1="140" x2="150" y2="138" stroke="#282830" stroke-width="0.8"/>
+      <line x1="50" y1="0" x2="48" y2="150" stroke="#242430" stroke-width="1"/>
+      <line x1="100" y1="0" x2="102" y2="150" stroke="#2a2a38" stroke-width="0.8"/>
+      <!-- Mineral glints -->
+      <circle cx="30" cy="25" r="1.5" fill="rgba(150,150,200,0.3)"/>
+      <circle cx="90" cy="60" r="1" fill="rgba(180,180,220,0.2)"/>
+      <circle cx="120" cy="110" r="1.5" fill="rgba(140,140,190,0.25)"/>
+      <circle cx="40" cy="130" r="1" fill="rgba(160,160,210,0.2)"/>
+    </pattern>
+    <linearGradient id="slg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(100,100,150,0.1)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.2)"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#slate)"/>
+  <rect width="600" height="600" fill="url(#slg)"/>
+  <!-- Grout -->
+  <line x1="0" y1="150" x2="600" y2="150" stroke="rgba(0,0,0,0.5)" stroke-width="3"/>
+  <line x1="0" y1="300" x2="600" y2="300" stroke="rgba(0,0,0,0.5)" stroke-width="3"/>
+  <line x1="0" y1="450" x2="600" y2="450" stroke="rgba(0,0,0,0.5)" stroke-width="3"/>
+  <line x1="150" y1="0" x2="150" y2="600" stroke="rgba(0,0,0,0.5)" stroke-width="3"/>
+  <line x1="300" y1="0" x2="300" y2="600" stroke="rgba(0,0,0,0.5)" stroke-width="3"/>
+  <line x1="450" y1="0" x2="450" y2="600" stroke="rgba(0,0,0,0.5)" stroke-width="3"/>
+</svg>

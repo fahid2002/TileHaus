@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <defs>
+    <pattern id="brick" x="0" y="0" width="120" height="50" patternUnits="userSpaceOnUse">
+      <rect width="120" height="50" fill="#a0522d"/>
+      <!-- Row 1 bricks -->
+      <rect x="2" y="2" width="116" height="20" fill="#c4844a" rx="1"/>
+      <!-- Row 2 offset bricks -->
+      <rect x="-58" y="28" width="114" height="20" fill="#b8783f" rx="1"/>
+      <rect x="58" y="28" width="114" height="20" fill="#b8783f" rx="1"/>
+      <!-- Highlight on each brick top -->
+      <rect x="2" y="2" width="40" height="3" fill="rgba(255,255,255,0.1)" rx="0.5"/>
+      <rect x="-58" y="28" width="30" height="2" fill="rgba(255,255,255,0.08)" rx="0.5"/>
+      <rect x="58" y="28" width="30" height="2" fill="rgba(255,255,255,0.08)" rx="0.5"/>
+      <!-- Shadow bottom of each brick -->
+      <rect x="2" y="19" width="116" height="2" fill="rgba(0,0,0,0.15)"/>
+      <rect x="-58" y="45" width="114" height="2" fill="rgba(0,0,0,0.15)"/>
+      <rect x="58" y="45" width="114" height="2" fill="rgba(0,0,0,0.15)"/>
+    </pattern>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,200,150,0.1)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.1)"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#brick)"/>
+  <rect width="600" height="600" fill="url(#bg)"/>
+</svg>

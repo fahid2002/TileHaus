@@ -1,65 +1,111 @@
-import Image from "next/image";
+import tiles from '@/data/tiles.json';
+import FeaturedSwiper from '@/components/FeaturedSwiper';
+import Link from 'next/link';
 
 export default function Home() {
+  const featured = tiles.slice(0, 4);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
+    <div>
+      {/* Hero */}
+      <section style={{
+        background: 'linear-gradient(135deg, #1c140d 0%, #2d1e0f 50%, #1a110a 100%)',
+        padding: '70px 28px 60px',
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        <div style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: 'repeating-linear-gradient(45deg, rgba(181,101,29,0.04) 0px, rgba(181,101,29,0.04) 1px, transparent 1px, transparent 40px)',
+        }} />
+        <div style={{ position: 'relative' }}>
+          <div style={{ fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase', color: '#c9956e', marginBottom: '16px' }}>
+            Premium Collection 2025
+          </div>
+          <h1 style={{
+            fontFamily: 'var(--font-playfair), serif',
+            fontSize: 'clamp(28px, 5vw, 48px)',
+            fontWeight: 700,
+            color: '#f5ede0',
+            lineHeight: 1.15,
+            marginBottom: '16px',
+          }}>
+            Discover Your<br /><em style={{ color: '#c9956e', fontStyle: 'italic' }}>Perfect Aesthetic</em>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p style={{ fontSize: '14px', color: 'rgba(245,237,224,0.6)', marginBottom: '32px' }}>
+            Curated ceramic, marble &amp; mosaic tiles for inspired spaces
           </p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/all-tiles" style={{
+              background: '#b5651d', color: '#fff', border: 'none',
+              borderRadius: '8px', padding: '10px 24px', fontSize: '13px',
+              fontWeight: 500, textDecoration: 'none', display: 'inline-block',
+            }}>
+              Browse Now
+            </Link>
+            <Link href="/all-tiles" style={{
+              background: 'transparent', color: '#f5ede0',
+              border: '0.5px solid rgba(245,237,224,0.35)',
+              borderRadius: '8px', padding: '10px 24px', fontSize: '13px',
+              textDecoration: 'none', display: 'inline-block',
+            }}>
+              View Catalog
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Marquee */}
+      <div style={{ background: '#b5651d', overflow: 'hidden', padding: '8px 0' }}>
+        <div className="marquee-track">
+          {[...Array(2)].map((_, i) => (
+            <span key={i} style={{ display: 'flex', gap: '40px', whiteSpace: 'nowrap' }}>
+              <span style={{ fontSize: '12px', color: '#fff', letterSpacing: '1px' }}>✦ New Arrivals: Venetian Cream Series</span>
+              <span style={{ fontSize: '12px', color: '#fff', letterSpacing: '1px' }}>✦ Weekly Feature: Modern Geometric Patterns</span>
+              <span style={{ fontSize: '12px', color: '#fff', letterSpacing: '1px' }}>✦ Join the Community</span>
+              <span style={{ fontSize: '12px', color: '#fff', letterSpacing: '1px' }}>✦ New Arrivals: Sahara Brick Collection</span>
+              <span style={{ fontSize: '12px', color: '#fff', letterSpacing: '1px' }}>✦ Limited Stock: Cobalt Zellige</span>
+            </span>
+          ))}
         </div>
-      </main>
+      </div>
+
+      {/* Featured Tiles with Swiper */}
+      <section style={{ padding: '36px 24px' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '20px' }}>
+          <h2 style={{
+            fontFamily: 'var(--font-playfair), serif',
+            fontSize: '22px', fontWeight: 600,
+            color: 'var(--color-text-primary)',
+          }}>Featured Tiles</h2>
+          <Link href="/all-tiles" style={{ fontSize: '12px', color: '#b5651d', textDecoration: 'none' }}>View all →</Link>
+        </div>
+        <FeaturedSwiper tiles={featured} />
+      </section>
+
+      {/* Stats Strip */}
+      <section style={{
+        background: 'var(--color-background-primary)',
+        borderTop: '0.5px solid var(--color-border-tertiary)',
+        borderBottom: '0.5px solid var(--color-border-tertiary)',
+        padding: '28px 24px',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        textAlign: 'center',
+        gap: '12px',
+      }}>
+        {[
+          { num: '500+', label: 'Tile Designs' },
+          { num: '12', label: 'Categories' },
+          { num: '10K+', label: 'Happy Customers' },
+        ].map((stat) => (
+          <div key={stat.label}>
+            <div style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '28px', fontWeight: 700, color: '#b5651d' }}>{stat.num}</div>
+            <div style={{ fontSize: '12px', color: 'var(--color-text-secondary)', marginTop: '4px' }}>{stat.label}</div>
+          </div>
+        ))}
+      </section>
     </div>
   );
 }

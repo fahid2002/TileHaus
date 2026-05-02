@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect x="1" y="1" width="20" height="20" fill="#a0522d" rx="3"/>
+  <rect x="27" y="1" width="20" height="20" fill="#c87941" rx="3"/>
+  <rect x="1" y="27" width="20" height="20" fill="#c87941" rx="3"/>
+  <rect x="27" y="27" width="20" height="20" fill="#a0522d" rx="3"/>
+  <!-- Diamond overlay each tile -->
+  <path d="M11 3L19 11L11 19L3 11Z" fill="rgba(255,255,255,0.12)"/>
+  <path d="M37 3L45 11L37 19L29 11Z" fill="rgba(255,255,255,0.12)"/>
+  <path d="M11 29L19 37L11 45L3 37Z" fill="rgba(255,255,255,0.12)"/>
+  <path d="M37 29L45 37L37 45L29 37Z" fill="rgba(255,255,255,0.12)"/>
+  <!-- Top-left highlight on each -->
+  <rect x="1" y="1" width="7" height="2" fill="rgba(255,255,255,0.3)" rx="1"/>
+  <rect x="27" y="1" width="7" height="2" fill="rgba(255,255,255,0.3)" rx="1"/>
+  <rect x="1" y="27" width="7" height="2" fill="rgba(255,255,255,0.3)" rx="1"/>
+  <rect x="27" y="27" width="7" height="2" fill="rgba(255,255,255,0.3)" rx="1"/>
+</svg>

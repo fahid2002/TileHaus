@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <defs>
+    <pattern id="subway" x="0" y="0" width="120" height="60" patternUnits="userSpaceOnUse">
+      <rect width="120" height="60" fill="#ddd8d0"/>
+      <!-- Row 1 -->
+      <rect x="2" y="2" width="116" height="26" fill="#f8f6f3" rx="2"/>
+      <!-- Row 2 offset -->
+      <rect x="-58" y="32" width="114" height="26" fill="#f4f2ef" rx="2"/>
+      <rect x="62" y="32" width="114" height="26" fill="#f4f2ef" rx="2"/>
+      <!-- Beveled edge highlight -->
+      <rect x="2" y="2" width="116" height="3" fill="rgba(255,255,255,0.8)" rx="1"/>
+      <rect x="2" y="2" width="3" height="26" fill="rgba(255,255,255,0.6)"/>
+      <rect x="-58" y="32" width="114" height="3" fill="rgba(255,255,255,0.8)" rx="1"/>
+      <rect x="62" y="32" width="114" height="3" fill="rgba(255,255,255,0.8)" rx="1"/>
+      <!-- Beveled shadow bottom -->
+      <rect x="2" y="25" width="116" height="3" fill="rgba(0,0,0,0.06)"/>
+      <rect x="-58" y="55" width="114" height="3" fill="rgba(0,0,0,0.06)"/>
+      <rect x="62" y="55" width="114" height="3" fill="rgba(0,0,0,0.06)"/>
+    </pattern>
+    <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.3)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.03)"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#subway)"/>
+  <rect width="600" height="600" fill="url(#sg)"/>
+</svg>

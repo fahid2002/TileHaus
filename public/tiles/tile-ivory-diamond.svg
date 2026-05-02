@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <defs>
+    <pattern id="diamond" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+      <rect width="80" height="80" fill="#f4ede2"/>
+      <!-- Diamond shape -->
+      <path d="M40 5L75 40L40 75L5 40Z" fill="none" stroke="#d8ccb8" stroke-width="1.5"/>
+      <!-- Inner diamond -->
+      <path d="M40 18L62 40L40 62L18 40Z" fill="none" stroke="#e0d4c0" stroke-width="0.8"/>
+      <!-- Center dot -->
+      <circle cx="40" cy="40" r="4" fill="#c8b898" opacity="0.5"/>
+      <!-- Corner accents -->
+      <circle cx="40" cy="5" r="2" fill="#c8b898" opacity="0.3"/>
+      <circle cx="75" cy="40" r="2" fill="#c8b898" opacity="0.3"/>
+      <circle cx="40" cy="75" r="2" fill="#c8b898" opacity="0.3"/>
+      <circle cx="5" cy="40" r="2" fill="#c8b898" opacity="0.3"/>
+    </pattern>
+    <linearGradient id="ig" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.05)"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#diamond)"/>
+  <rect width="600" height="600" fill="url(#ig)"/>
+</svg>
