@@ -21,7 +21,7 @@ export default function Home() {
         }} />
         <div style={{ position: 'relative' }}>
           <div style={{ fontSize: '11px', letterSpacing: '3px', textTransform: 'uppercase', color: '#c9956e', marginBottom: '16px' }}>
-            Premium Collection 2025
+            Premium Collection 2026
           </div>
           <h1 style={{
             fontFamily: 'var(--font-playfair), serif',

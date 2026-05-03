@@ -1,15 +1,46 @@
 'use client';
 import Link from 'next/link';
 import { useSession, signOut } from '@/lib/auth.client';
-import { Avatar, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@heroui/react';
-import { useRouter } from 'next/navigation';
+import { Button } from '@heroui/react';
+import { useRouter, usePathname } from 'next/navigation';
+import { useState } from 'react';
+
+// A small custom component to handle Hover and Active states
+const NavItem = ({ href, children, currentPath }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Check if this link is the current active page
+  const isActive = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+
+  return (
+    <Link
+      href={href}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        fontSize: '13px',
+        textDecoration: 'none',
+        fontWeight: isActive ? 600 : 500,
+        color: isActive ? '#b5651d' : (isHovered ? '#b5651d' : 'var(--color-text-secondary)'),
+        transition: 'all 0.2s ease',
+        borderBottom: isActive ? '2px solid #b5651d' : '2px solid transparent',
+        paddingBottom: '4px'
+      }}
+    >
+      {children}
+    </Link>
+  );
+};
 
 export default function Navbar() {
   const { data: session, isPending } = useSession();
   const router = useRouter();
+  const pathname = usePathname(); // Gets the current URL path
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleLogout = async () => {
     await signOut();
+    setDropdownOpen(false);
     router.push('/');
   };
 
@@ -38,32 +69,80 @@ export default function Navbar() {
         Tile<span style={{ color: '#b5651d' }}>Haus</span>
       </Link>
 
-      {/* Nav Links */}
-      <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
-        <Link href="/" style={{ fontSize: '13px', color: 'var(--color-text-secondary)', textDecoration: 'none' }}>Home</Link>
-        <Link href="/all-tiles" style={{ fontSize: '13px', color: 'var(--color-text-secondary)', textDecoration: 'none' }}>All Tiles</Link>
-        {session && (
-          <Link href="/my-profile" style={{ fontSize: '13px', color: 'var(--color-text-secondary)', textDecoration: 'none' }}>My Profile</Link>
-        )}
+      {/* Nav Links with Hover and Active States */}
+      <div style={{ display: 'flex', gap: '24px', alignItems: 'center', marginTop: '4px' }}>
+        <NavItem href="/" currentPath={pathname}>Home</NavItem>
+        <NavItem href="/all-tiles" currentPath={pathname}>All Tiles</NavItem>
       </div>
 
       {/* Auth Area */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
         {isPending ? null : session ? (
-          <Dropdown>
-            <DropdownTrigger>
-              <Avatar
-                src={session.user.image || null}
-                name={session.user.name?.charAt(0) || 'U'}
-                size="sm"
-                style={{ cursor: 'pointer', background: '#c9956e', color: '#fff' }}
-              />
-            </DropdownTrigger>
-            <DropdownMenu>
-              <DropdownItem key="profile" onPress={() => router.push('/my-profile')}>My Profile</DropdownItem>
-              <DropdownItem key="logout" color="danger" onPress={handleLogout}>Logout</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+          // Custom Bulletproof Dropdown Container
+          <div style={{ position: 'relative' }}>
+            
+            {/* The Avatar / Trigger */}
+            <div 
+              onClick={() => setDropdownOpen(!dropdownOpen)} 
+              style={{ cursor: 'pointer' }}
+            >
+              {session.user.image ? (
+                <img 
+                  src={session.user.image} 
+                  alt="Profile" 
+                  style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover', border: '1px solid var(--color-border-tertiary)' }} 
+                />
+              ) : (
+                <div style={{
+                  width: '32px', height: '32px', borderRadius: '50%', background: '#c9956e', color: '#fff',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 600
+                }}>
+                  {session.user.name?.charAt(0) || 'U'}
+                </div>
+              )}
+            </div>
+
+            {/* The Floating Menu */}
+            {dropdownOpen && (
+              <div style={{
+                position: 'absolute',
+                top: '42px',
+                right: 0,
+                background: 'var(--color-background-primary)',
+                border: '1px solid var(--color-border-tertiary)',
+                borderRadius: '8px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                padding: '6px 0',
+                width: '140px',
+                display: 'flex',
+                flexDirection: 'column',
+                zIndex: 101,
+              }}>
+                <button 
+                  onClick={() => { setDropdownOpen(false); router.push('/my-profile'); }}
+                  style={{
+                    background: 'transparent', border: 'none', padding: '8px 16px',
+                    textAlign: 'left', fontSize: '13px', color: 'var(--color-text-primary)', cursor: 'pointer',
+                  }}
+                  onMouseOver={(e) => e.target.style.background = 'var(--color-background-secondary)'}
+                  onMouseOut={(e) => e.target.style.background = 'transparent'}
+                >
+                  My Profile
+                </button>
+                <button 
+                  onClick={handleLogout}
+                  style={{
+                    background: 'transparent', border: 'none', padding: '8px 16px',
+                    textAlign: 'left', fontSize: '13px', color: '#d32f2f', cursor: 'pointer',
+                  }}
+                  onMouseOver={(e) => e.target.style.background = '#ffebee'}
+                  onMouseOut={(e) => e.target.style.background = 'transparent'}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
         ) : (
           <Button
             onPress={() => router.push('/login')}

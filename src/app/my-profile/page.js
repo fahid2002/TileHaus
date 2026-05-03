@@ -77,10 +77,23 @@ export default async function MyProfilePage() {
               border: '0.5px solid var(--color-border-tertiary)',
               borderRadius: '8px', padding: '12px 14px',
               display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              // Force the container to respect its boundaries
+              minWidth: 0, 
             }}>
-              <div>
+              <div style={{ width: '100%', minWidth: 0 }}>
                 <div style={{ fontSize: '11px', color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>{item.label}</div>
-                <div style={{ fontSize: '14px', color: 'var(--color-text-primary)', marginTop: '2px' }}>{item.val}</div>
+                <div style={{ 
+                  fontSize: '14px', 
+                  color: 'var(--color-text-primary)', 
+                  marginTop: '2px',
+                  // CSS Magic to truncate long text!
+                  maxWidth: '100%',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap'
+                }}>
+                  {item.val}
+                </div>
               </div>
             </div>
           ))}
