@@ -53,7 +53,7 @@ export default function Navbar() {
           <Dropdown>
             <DropdownTrigger>
               <Avatar
-                src={session.user.image || ''}
+                src={session.user.image || null}
                 name={session.user.name?.charAt(0) || 'U'}
                 size="sm"
                 style={{ cursor: 'pointer', background: '#c9956e', color: '#fff' }}
