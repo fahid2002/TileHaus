@@ -51,16 +51,29 @@ export default function TileCard({ tile }) {
           <span style={{ fontSize: '11px', color: 'var(--color-text-secondary)' }}>{tile.dimensions}</span>
         </div>
         <div style={{ fontSize: '13px', fontWeight: 500, color: '#b5651d', marginBottom: '8px' }}>${tile.price}</div>
-        <Link href={`/tile/${tile.id}`} style={{ display: 'block' }}>
-          <Button size="sm" style={{
-            width: '100%',
-            background: 'var(--color-background-secondary)',
-            border: '0.5px solid var(--color-border-tertiary)',
-            borderRadius: '8px',
-            fontSize: '12px',
-            color: 'var(--color-text-primary)',
-            cursor: 'pointer',
-          }}>
+       <Link href={`/tile/${tile.id}`} style={{ display: 'block' }}>
+          <Button 
+            size="sm" 
+            style={{
+              width: '100%',
+              background: 'var(--color-background-secondary)',
+              border: '0.5px solid var(--color-border-tertiary)',
+              borderRadius: '8px',
+              fontSize: '12px',
+              color: 'var(--color-text-primary)',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease', /* <--- Added smooth transition */
+            }}
+            /* Added hover effects below */
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#b5651d';
+              e.currentTarget.style.color = '#ffffff';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'var(--color-background-secondary)';
+              e.currentTarget.style.color = 'var(--color-text-primary)';
+            }}
+          >
             View Details
           </Button>
         </Link>
@@ -131,7 +144,7 @@ function TilePatternSVG({ id, category }) {
         <rect width="100%" height="100%" fill={`url(#p-${id})`} />
       </svg>
     ),
-    zellige: (
+    obsidian: (
       <svg width="100%" height="100%" viewBox="0 0 120 110" preserveAspectRatio="none">
         <defs>
           <pattern id={`p-${id}`} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">

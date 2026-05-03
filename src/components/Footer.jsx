@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 
 export default function Footer() {
@@ -48,7 +50,19 @@ export default function Footer() {
         <div>
           <div style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '14px', color: '#f5ede0', marginBottom: '10px' }}>Contact Us</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            <span style={{ fontSize: '12px', color: 'rgba(245,237,224,0.5)' }}>fahidhasanifty20@gmail.com</span>
+           <a 
+              href="mailto:fahidhasanifty20@gmail.com" 
+              style={{ 
+                fontSize: '12px', 
+                color: 'rgba(245,237,224,0.5)', 
+                textDecoration: 'none', /* Removes the default link underline */
+                cursor: 'pointer' 
+              }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#b5651d'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(245,237,224,0.5)'}
+            >
+              fahidhasanifty20@gmail.com
+            </a>
             <span style={{ fontSize: '12px', color: 'rgba(245,237,224,0.5)' }}>+88 01749573951</span>
             <span style={{ fontSize: '12px', color: 'rgba(245,237,224,0.5)' }}>Dhaka, Bangladesh</span>
             

@@ -1,14 +1,27 @@
 'use client';
-import { useState } from 'react';
-import tiles from '@/data/tiles.json';
+import { useState, useEffect } from 'react';
 import TileCard from '@/components/TileCard';
 import { Input } from '@heroui/react';
+import { useSearchParams } from 'next/navigation';
+import tiles from '@/data/tiles.json';
 
-const categories = ['All', 'Ceramic', 'Marble', 'Mosaic', 'Porcelain', 'Terracotta', 'Zellige'];
+const categories = ['All', 'Ceramic', 'Marble', 'Mosaic', 'Porcelain', 'Terracotta'];
 
 export default function AllTilesPage() {
   const [search, setSearch] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
+
+  const searchParams = useSearchParams();
+  const categoryQuery = searchParams.get('category');
+
+  useEffect(() => {
+    if (categoryQuery) {
+      const formattedCategory = categoryQuery.charAt(0).toUpperCase() + categoryQuery.slice(1);
+      setActiveFilter(formattedCategory);
+    } else {
+      setActiveFilter('All');
+    }
+  }, [categoryQuery]);
 
   const filtered = tiles.filter((tile) => {
     const matchSearch = tile.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -44,7 +57,7 @@ export default function AllTilesPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             size="lg"
-            style={{ paddingLeft: '40px', width: '100%' }} 
+            style={{ paddingLeft: '40px', width: '100%',maxWidth: '500px',height: '55px' }} 
           />
         </div>
 
