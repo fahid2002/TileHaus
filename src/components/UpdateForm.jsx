@@ -85,11 +85,11 @@ export default function UpdateForm({ user }) {
           <label style={{ fontSize: '12px', color: 'var(--color-text-secondary)', marginBottom: '5px', display: 'block' }}>Full name</label>
           <Input 
             type="text" 
-            placeholder="Rahim Hossain" 
+            placeholder="Your Name" 
             value={name} 
             size="lg" // Increased size
             onChange={(e) => setName(e.target.value)} 
-            style={{ marginBottom: '12px' }} 
+            style={{ marginBottom: '12px', height: '30px' }} 
           />
 
           <label style={{ fontSize: '12px', color: 'var(--color-text-secondary)', marginBottom: '5px', display: 'block' }}>Photo URL or Upload</label>
@@ -101,7 +101,7 @@ export default function UpdateForm({ user }) {
               value={image} 
               size="lg" // Increased size
               onChange={(e) => setImage(e.target.value)} 
-              style={{ flex: 1 }} 
+              style={{ flex: 1, height: '30px' }} 
             />
             <Button 
               type="button" 
@@ -126,14 +126,6 @@ export default function UpdateForm({ user }) {
             onChange={handleFileChange} 
             style={{ display: 'none' }} 
           />
-
-          <div style={{
-            background: 'var(--color-background-secondary)', borderRadius: '8px',
-            padding: '10px 12px', marginBottom: '12px',
-            fontSize: '11px', color: 'var(--color-text-secondary)',
-          }}>
-            Using BetterAuth <code>updateUser</code> — only name and image can be changed here.
-          </div>
 
           <Button type="submit" isLoading={loading} style={{
             width: '100%', background: '#b5651d', color: '#fff',

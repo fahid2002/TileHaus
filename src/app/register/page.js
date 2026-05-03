@@ -51,8 +51,8 @@ export default function RegisterPage() {
 
         <form onSubmit={handleRegister}>
           {[
-            { label: 'Full name', name: 'name', type: 'text', placeholder: 'Rahim Hossain' },
-            { label: 'Email address', name: 'email', type: 'email', placeholder: 'rahim@example.com' },
+            { label: 'Full name', name: 'name', type: 'text', placeholder: 'Your Name' },
+            { label: 'Email address', name: 'email', type: 'email', placeholder: 'example@gmail.com' },
             { label: 'Photo URL', name: 'photoUrl', type: 'url', placeholder: 'https://example.com/photo.jpg' },
             { label: 'Password', name: 'password', type: 'password', placeholder: '••••••••' },
           ].map((field) => (

@@ -24,12 +24,25 @@ export default function TileCard({ tile }) {
       onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(181,101,29,0.15)'; }}
       onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
     >
-      {/* Tile pattern image */}
-      <div style={{ height: '110px', background: 'var(--color-background-secondary)', position: 'relative', overflow: 'hidden' }}>
-        <TilePatternSVG id={tile.id} category={tile.category} />
+      {/* TILE IMAGE SECTION - UPDATED */}
+      <div style={{ height: '240px', background: 'var(--color-background-secondary)', position: 'relative', overflow: 'hidden' }}>
+        {tile.image ? (
+          <img 
+            src={tile.image} 
+            alt={tile.title || tile.name} 
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              objectFit: 'cover' // Change to 'contain' if you don't want the edges cropped at all!
+            }} 
+          />
+        ) : (
+          <TilePatternSVG id={tile.id} category={tile.category} />
+        )}
       </div>
+
       <div style={{ padding: '10px 12px 14px' }}>
-        <div style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-primary)', marginBottom: '3px' }}>{tile.title}</div>
+        <div style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-primary)', marginBottom: '3px' }}>{tile.title || tile.name}</div>
         <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '6px', flexWrap: 'wrap' }}>
           <span style={{
             display: 'inline-block', padding: '2px 8px', borderRadius: '20px',
@@ -59,7 +72,7 @@ export default function TileCard({ tile }) {
 function TilePatternSVG({ id, category }) {
   const patterns = {
     ceramic: (
-      <svg width="100%" height="110" viewBox="0 0 120 110">
+      <svg width="100%" height="100%" viewBox="0 0 120 110" preserveAspectRatio="none">
         <defs>
           <pattern id={`p-${id}`} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
             <rect width="20" height="20" fill="#c9956e" />
@@ -67,11 +80,11 @@ function TilePatternSVG({ id, category }) {
             <path d="M10 1L19 10L10 19L1 10Z" fill="#b5651d" opacity="0.4" />
           </pattern>
         </defs>
-        <rect width="120" height="110" fill={`url(#p-${id})`} />
+        <rect width="100%" height="100%" fill={`url(#p-${id})`} />
       </svg>
     ),
     marble: (
-      <svg width="100%" height="110" viewBox="0 0 120 110">
+      <svg width="100%" height="100%" viewBox="0 0 120 110" preserveAspectRatio="none">
         <defs>
           <pattern id={`p-${id}`} x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
             <rect width="24" height="24" fill="#e8e4dc" />
@@ -80,11 +93,11 @@ function TilePatternSVG({ id, category }) {
             <circle cx="12" cy="12" r="3" fill="#9e9890" />
           </pattern>
         </defs>
-        <rect width="120" height="110" fill={`url(#p-${id})`} />
+        <rect width="100%" height="100%" fill={`url(#p-${id})`} />
       </svg>
     ),
     mosaic: (
-      <svg width="100%" height="110" viewBox="0 0 120 110">
+      <svg width="100%" height="100%" viewBox="0 0 120 110" preserveAspectRatio="none">
         <defs>
           <pattern id={`p-${id}`} x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
             <rect width="16" height="16" fill="#2d4a3e" />
@@ -92,11 +105,11 @@ function TilePatternSVG({ id, category }) {
             <rect x="8" y="8" width="8" height="8" fill="#3a6355" />
           </pattern>
         </defs>
-        <rect width="120" height="110" fill={`url(#p-${id})`} />
+        <rect width="100%" height="100%" fill={`url(#p-${id})`} />
       </svg>
     ),
     porcelain: (
-      <svg width="100%" height="110" viewBox="0 0 120 110">
+      <svg width="100%" height="100%" viewBox="0 0 120 110" preserveAspectRatio="none">
         <defs>
           <pattern id={`p-${id}`} x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
             <rect width="30" height="30" fill="#f5f0e8" />
@@ -104,22 +117,22 @@ function TilePatternSVG({ id, category }) {
             <circle cx="15" cy="15" r="4" fill="#c9b08a" opacity="0.6" />
           </pattern>
         </defs>
-        <rect width="120" height="110" fill={`url(#p-${id})`} />
+        <rect width="100%" height="100%" fill={`url(#p-${id})`} />
       </svg>
     ),
     terracotta: (
-      <svg width="100%" height="110" viewBox="0 0 120 110">
+      <svg width="100%" height="100%" viewBox="0 0 120 110" preserveAspectRatio="none">
         <defs>
           <pattern id={`p-${id}`} x="0" y="0" width="24" height="12" patternUnits="userSpaceOnUse">
             <rect width="24" height="12" fill="#d4c09a" />
             <rect x="0.5" y="0.5" width="23" height="11" fill="none" stroke="#b8a07a" strokeWidth="0.5" />
           </pattern>
         </defs>
-        <rect width="120" height="110" fill={`url(#p-${id})`} />
+        <rect width="100%" height="100%" fill={`url(#p-${id})`} />
       </svg>
     ),
     zellige: (
-      <svg width="100%" height="110" viewBox="0 0 120 110">
+      <svg width="100%" height="100%" viewBox="0 0 120 110" preserveAspectRatio="none">
         <defs>
           <pattern id={`p-${id}`} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
             <rect width="20" height="20" fill="#4a3a6e" />
@@ -127,7 +140,7 @@ function TilePatternSVG({ id, category }) {
             <circle cx="10" cy="10" r="2" fill="#9e8ece" />
           </pattern>
         </defs>
-        <rect width="120" height="110" fill={`url(#p-${id})`} />
+        <rect width="100%" height="100%" fill={`url(#p-${id})`} />
       </svg>
     ),
   };

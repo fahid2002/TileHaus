@@ -27,7 +27,6 @@ export default function AllTilesPage() {
           color: 'var(--color-text-primary)', marginBottom: '14px',
         }}>All Tiles</h1>
         
-        {/* 👇 FIXED: Wrapped Input to handle the icon manually without startContent 👇 */}
         <div style={{ position: 'relative', marginBottom: '14px' }}>
           <span style={{ 
             position: 'absolute', 
@@ -45,7 +44,7 @@ export default function AllTilesPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             size="lg"
-            style={{ paddingLeft: '40px', width: '100%' }} // Added paddingLeft so text doesn't overlap the icon
+            style={{ paddingLeft: '40px', width: '100%' }} 
           />
         </div>
 
