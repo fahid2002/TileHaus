@@ -73,6 +73,9 @@ export default function Navbar() {
       <div style={{ display: 'flex', gap: '24px', alignItems: 'center', marginTop: '4px' }}>
         <NavItem href="/" currentPath={pathname}>Home</NavItem>
         <NavItem href="/all-tiles" currentPath={pathname}>All Tiles</NavItem>
+        {session && (
+          <NavItem href="/my-profile" currentPath={pathname}>My Profile</NavItem>
+        )}
       </div>
 
       {/* Auth Area */}

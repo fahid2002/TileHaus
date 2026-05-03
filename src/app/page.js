@@ -1,9 +1,36 @@
-import tiles from '@/data/tiles.json';
+import { MongoClient } from 'mongodb';
 import FeaturedSwiper from '@/components/FeaturedSwiper';
 import Link from 'next/link';
 
-export default function Home() {
-  const featured = tiles.slice(0, 4);
+// 1. Secure Server-Side Database Fetch
+async function getFeaturedTiles() {
+  if (!process.env.MONGODB_URI) {
+    throw new Error('Missing MONGODB_URI in environment variables');
+  }
+
+  const client = await MongoClient.connect(process.env.MONGODB_URI);
+  const db = client.db("TileHaus"); 
+
+  // Fetch the top 4 tiles from the database
+  const rawTiles = await db.collection("tiles")
+    .find({})
+    .limit(4) 
+    .toArray();
+
+  await client.close();
+
+  // Convert MongoDB ObjectIds to safe strings for the Swiper Client Component
+  return rawTiles.map((tile) => ({
+    ...tile,
+    _id: tile._id.toString(),
+    id: tile._id.toString(), 
+  }));
+}
+
+// 2. Make the Home function `async`
+export default async function Home() {
+  // 3. Await the database fetch instead of using the local JSON
+  const featured = await getFeaturedTiles();
 
   return (
     <div>
@@ -81,6 +108,8 @@ export default function Home() {
           }}>Featured Tiles</h2>
           <Link href="/all-tiles" style={{ fontSize: '12px', color: '#b5651d', textDecoration: 'none' }}>View all →</Link>
         </div>
+        
+        {/* 4. Swiper fed by real DB data! */}
         <FeaturedSwiper tiles={featured} />
       </section>
 

@@ -1,5 +1,4 @@
 'use client';
-
 import Link from 'next/link';
 
 export default function Footer() {
@@ -13,7 +12,6 @@ export default function Footer() {
     <footer style={{ background: '#1c140d', padding: '32px 24px 20px' }}>
       <div style={{
         display: 'grid',
-       
         gridTemplateColumns: 'repeat(3, 1fr)',
         gap: '24px',
         marginBottom: '24px',
@@ -38,35 +36,87 @@ export default function Footer() {
         <div>
           <div style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '14px', color: '#f5ede0', marginBottom: '10px' }}>Explore</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            <Link href="/" style={{ fontSize: '12px', color: 'rgba(245,237,224,0.5)', textDecoration: 'none' }}>Home</Link>
-            <Link href="/all-tiles" style={{ fontSize: '12px', color: 'rgba(245,237,224,0.5)', textDecoration: 'none' }}>All Tiles</Link>
-            <Link href="/all-tiles?category=ceramic" style={{ fontSize: '12px', color: 'rgba(245,237,224,0.5)', textDecoration: 'none' }}>Ceramic</Link>
-            <Link href="/all-tiles?category=marble" style={{ fontSize: '12px', color: 'rgba(245,237,224,0.5)', textDecoration: 'none' }}>Marble</Link>
+            <Link 
+              href="/" 
+              style={{ 
+                fontSize: '12px', 
+                color: 'rgba(245,237,224,0.5)', 
+                textDecoration: 'none',
+                transition: 'color 0.2s ease' 
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#b5651d'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(245,237,224,0.5)'}
+            >
+              Home
+            </Link>
+            
+            <Link 
+              href="/all-tiles" 
+              style={{ 
+                fontSize: '12px', 
+                color: 'rgba(245,237,224,0.5)', 
+                textDecoration: 'none',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#b5651d'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(245,237,224,0.5)'}
+            >
+              All Tiles
+            </Link>
+            
+            <Link 
+              href="/all-tiles?category=ceramic" 
+              style={{ 
+                fontSize: '12px', 
+                color: 'rgba(245,237,224,0.5)', 
+                textDecoration: 'none',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#b5651d'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(245,237,224,0.5)'}
+            >
+              Ceramic
+            </Link>
+            
+            <Link 
+              href="/all-tiles?category=marble" 
+              style={{ 
+                fontSize: '12px', 
+                color: 'rgba(245,237,224,0.5)', 
+                textDecoration: 'none',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#b5651d'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(245,237,224,0.5)'}
+            >
+              Marble
+            </Link>
           </div>
         </div>
 
-       
         {/* Column 3: Contact & Direct Message */}
         <div>
           <div style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '14px', color: '#f5ede0', marginBottom: '10px' }}>Contact Us</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-           <a 
+            
+            <a 
               href="mailto:fahidhasanifty20@gmail.com" 
               style={{ 
                 fontSize: '12px', 
                 color: 'rgba(245,237,224,0.5)', 
-                textDecoration: 'none', /* Removes the default link underline */
-                cursor: 'pointer' 
+                textDecoration: 'none', 
+                cursor: 'pointer',
+                transition: 'color 0.2s ease', 
               }}
-            onMouseEnter={(e) => e.currentTarget.style.color = '#b5651d'}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#b5651d'}
               onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(245,237,224,0.5)'}
             >
               fahidhasanifty20@gmail.com
             </a>
+
             <span style={{ fontSize: '12px', color: 'rgba(245,237,224,0.5)' }}>+88 01749573951</span>
             <span style={{ fontSize: '12px', color: 'rgba(245,237,224,0.5)' }}>Dhaka, Bangladesh</span>
             
-            {/* Direct message button using WhatsApp API */}
             <a 
               href="https://wa.me/8801749573951?text=Hello%20TileHaus,%20I%20have%20an%20inquiry!" 
               target="_blank"
@@ -103,7 +153,6 @@ export default function Footer() {
       }}>
         <span style={{ fontSize: '11px', color: 'rgba(245,237,224,0.35)' }}>© 2026 TileHaus. All rights reserved.</span>
         
-        {/* Social Links Output */}
         <div style={{ display: 'flex', gap: '10px' }}>
           {socialLinks.map((social) => (
             <a 

@@ -1,4 +1,4 @@
-'use client';
+'use client'; 
 import { useState, useEffect } from 'react';
 import TileCard from '@/components/TileCard';
 import { Input } from '@heroui/react';
