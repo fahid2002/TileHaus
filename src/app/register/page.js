@@ -38,7 +38,9 @@ export default function RegisterPage() {
   return (
     <div style={{ background: 'var(--color-background-tertiary)', minHeight: '100vh', paddingBottom: '24px', paddingTop: '24px' }}>
       <div style={{
-        maxWidth: '360px', margin: '0 auto',
+        width: '100%', // Ensures it takes the full width up to the maxWidth
+        maxWidth: '360px', 
+        margin: '0 auto',
         padding: '28px',
         background: 'var(--color-background-primary)',
         border: '0.5px solid var(--color-border-tertiary)',
@@ -65,21 +67,26 @@ export default function RegisterPage() {
                 value={form[field.name]}
                 onChange={handleChange}
                 required={field.name !== 'photoUrl'}
-                style={{ marginBottom: '12px' }}
+                style={{ 
+                  marginBottom: '12px', 
+                  width: '100%', // Takes full width of the form div
+                  fontSize: '14px', // Increases placeholder and input text size
+                  padding: '10px 12px' // Gives it more height and breathing room
+                }}
               />
             </div>
           ))}
 
           <Button type="submit" isLoading={loading} style={{
             width: '100%', background: '#b5651d', color: '#fff',
-            border: 'none', borderRadius: '8px', padding: '10px',
-            fontSize: '13px', fontWeight: 500, cursor: 'pointer', marginTop: '4px', marginBottom: '10px',
+            border: 'none', borderRadius: '8px', padding: '12px', // Matched padding with inputs
+            fontSize: '14px', fontWeight: 500, cursor: 'pointer', marginTop: '4px', marginBottom: '10px',
           }}>
             Register
           </Button>
         </form>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '12px 0' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '14px 0' }}>
           <div style={{ flex: 1, height: '0.5px', background: 'var(--color-border-tertiary)' }} />
           <span style={{ fontSize: '11px', color: 'var(--color-text-secondary)' }}>or continue with</span>
           <div style={{ flex: 1, height: '0.5px', background: 'var(--color-border-tertiary)' }} />
@@ -88,7 +95,7 @@ export default function RegisterPage() {
         <button onClick={handleGoogle} style={{
           width: '100%', background: 'var(--color-background-secondary)',
           color: 'var(--color-text-primary)', border: '0.5px solid var(--color-border-tertiary)',
-          borderRadius: '8px', padding: '9px', fontSize: '13px', cursor: 'pointer',
+          borderRadius: '8px', padding: '10px', fontSize: '13px', cursor: 'pointer',
           fontFamily: 'DM Sans, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
         }}>
           <svg width="16" height="16" viewBox="0 0 24 24">
