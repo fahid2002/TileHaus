@@ -77,7 +77,7 @@ export default async function MyProfilePage() {
               border: '0.5px solid var(--color-border-tertiary)',
               borderRadius: '8px', padding: '12px 14px',
               display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-              // Force the container to respect its boundaries
+
               minWidth: 0, 
             }}>
               <div style={{ width: '100%', minWidth: 0 }}>
@@ -86,7 +86,7 @@ export default async function MyProfilePage() {
                   fontSize: '14px', 
                   color: 'var(--color-text-primary)', 
                   marginTop: '2px',
-                  // CSS Magic to truncate long text!
+
                   maxWidth: '100%',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',

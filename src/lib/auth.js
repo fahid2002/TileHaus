@@ -7,39 +7,27 @@ if (!process.env.MONGODB_URI) {
 }
 
 const uri = process.env.MONGODB_URI;
+const client = new MongoClient(uri);
 
-let client;
-let clientPromise;
-
-if (process.env.NODE_ENV === "development") {
-  let globalWithMongo = global;
-  
-  if (!globalWithMongo._mongoClientPromise) {
-    client = new MongoClient(uri);
-    globalWithMongo._mongoClientPromise = client.connect();
-  }
-  clientPromise = globalWithMongo._mongoClientPromise;
-} else {
-  client = new MongoClient(uri);
-  clientPromise = client.connect();
-}
-
-const connectedClient = await clientPromise;
-const db = connectedClient.db("TileHaus");
+const db = client.db("TileHaus");
 
 export const auth = betterAuth({
-  database: mongodbAdapter(db, {
-    client: connectedClient 
-  }),
+
+    database: mongodbAdapter(db),
+  
   secret: process.env.BETTER_AUTH_SECRET,
   baseURL: process.env.BETTER_AUTH_URL,
+  
   socialProviders: {
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID || "temp",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "temp",
     },
   },
+  
   emailAndPassword: {
     enabled: true,
   },
 });
+
+export { db };

@@ -37,7 +37,7 @@ export default function TileCard({ tile }) {
             }} 
           />
         ) : (
-          <TilePatternSVG id={tile.id} category={tile.category} />
+          <TilePatternSVG id={tile._id || tile.id} category={tile.category} />
         )}
       </div>
 
@@ -51,7 +51,7 @@ export default function TileCard({ tile }) {
           <span style={{ fontSize: '11px', color: 'var(--color-text-secondary)' }}>{tile.dimensions}</span>
         </div>
         <div style={{ fontSize: '13px', fontWeight: 500, color: '#b5651d', marginBottom: '8px' }}>${tile.price}</div>
-       <Link href={`/tile/${tile.id}`} style={{ display: 'block' }}>
+       <Link href={`/tile/${tile._id || tile.id}`} style={{ display: 'block' }}>
           <Button 
             size="sm" 
             style={{

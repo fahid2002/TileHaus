@@ -1,16 +1,42 @@
-import { redirect } from 'next/navigation';
-import { auth } from '@/lib/auth';
+import { notFound, redirect } from 'next/navigation';
+import { auth, db } from '@/lib/auth';
 import { headers } from 'next/headers';
-import tiles from '@/data/tiles.json';
+import { ObjectId } from 'mongodb';
 import Link from 'next/link';
 import TileDetailSwiper from '@/components/TileDetailSwiper';
 
 export default async function TileDetailPage({ params }) {
-  const session = await auth.api.getSession({ headers: await headers() });
+
+    const { id } = await params;
+
+
+    const session = await auth.api.getSession({ headers: await headers() });
   if (!session) redirect('/login');
 
-  const tile = tiles.find((t) => t.id === params.id);
-  if (!tile) redirect('/not-found');
+
+  let rawTile = null;
+  try {
+
+    const isObjectId = /^[0-9a-fA-F]{24}$/.test(id);
+    
+    if (isObjectId) {
+      rawTile = await db.collection("tiles").findOne({ _id: new ObjectId(id) });
+    } else {
+
+        rawTile = await db.collection("tiles").findOne({ id: id });
+    }
+  } catch (e) {
+    console.error("Database fetch error:", e);
+  }
+
+  if (!rawTile) {
+    notFound();
+  }
+
+  
+
+const tile = rawTile ? JSON.parse(JSON.stringify(rawTile)) : null;
+
 
   const categoryColors = {
     ceramic: { bg: '#f0e6d3', color: '#8b5e2d' },
@@ -19,13 +45,17 @@ export default async function TileDetailPage({ params }) {
     porcelain: { bg: '#e3ecf0', color: '#2d5a6b' },
     terracotta: { bg: '#f5e6d3', color: '#8b4513' },
     zellige: { bg: '#d3e4f5', color: '#1d4a7a' },
+    obsidian: { bg: '#333333', color: '#ffffff' },
   };
+  
   const cat = categoryColors[tile.category] || categoryColors['ceramic'];
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--color-background-tertiary)' }}>
       <div style={{ padding: '16px 24px' }}>
-        <Link href="/all-tiles" style={{ fontSize: '13px', color: '#b5651d', textDecoration: 'none' }}>← Back to All Tiles</Link>
+        <Link href="/" style={{ fontSize: '13px', color: '#b5651d', textDecoration: 'none' }}>
+          ← Back to Home
+        </Link>
       </div>
 
       <div style={{
@@ -39,6 +69,7 @@ export default async function TileDetailPage({ params }) {
         overflow: 'hidden',
         border: '0.5px solid var(--color-border-tertiary)',
       }}>
+        
         {/* Left - Swiper Slider */}
         <div style={{
           background: 'var(--color-background-secondary)',
@@ -49,30 +80,48 @@ export default async function TileDetailPage({ params }) {
           padding: '28px',
         }}>
           <TileDetailSwiper tile={tile} />
+          {/* <div style={{color: 'red'}}>TEMP TEXT: {tile.title}</div> */}
         </div>
 
         {/* Right - Details */}
         <div style={{ padding: '32px 28px' }}>
-          {/* Badges */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
-            <span style={{ display: 'inline-block', padding: '2px 8px', borderRadius: '20px', fontSize: '10px', fontWeight: 500, background: cat.bg, color: cat.color }}>{tile.category}</span>
-            {tile.tags.map((tag) => (
-              <span key={tag} style={{ display: 'inline-block', padding: '2px 8px', borderRadius: '20px', fontSize: '10px', background: '#e8e8f0', color: '#4a4a6a' }}>{tag}</span>
+            <span style={{ 
+              display: 'inline-block', padding: '2px 8px', borderRadius: '20px', 
+              fontSize: '10px', fontWeight: 500, background: cat.bg, color: cat.color 
+            }}>
+              {tile.category}
+            </span>
+            {tile.tags?.map((tag) => (
+              <span key={tag} style={{ 
+                display: 'inline-block', padding: '2px 8px', borderRadius: '20px', 
+                fontSize: '10px', background: '#e8e8f0', color: '#4a4a6a' 
+              }}>
+                {tag}
+              </span>
             ))}
-            {tile.inStock && <span className="in-stock">In Stock</span>}
+            {tile.inStock && (
+              <span style={{ fontSize: '10px', color: '#2d6b2d', marginLeft: 'auto', fontWeight: 600 }}>
+                ● In Stock
+              </span>
+            )}
           </div>
 
-          <h1 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '28px', fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: '6px', lineHeight: 1.2 }}>
+          <h1 style={{ 
+            fontFamily: 'var(--font-playfair), serif', fontSize: '28px', 
+            fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: '6px', lineHeight: 1.2 
+          }}>
             {tile.title}
           </h1>
+          
           <div style={{ fontSize: '12px', color: 'var(--color-text-secondary)', marginBottom: '14px' }}>
-            By {tile.creator} · {tile.id}
+            By {tile.creator} · {tile.id || tile._id}
           </div>
+
           <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: '20px' }}>
             {tile.description}
           </p>
 
-          {/* Specs */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '20px' }}>
             {[
               { label: 'Dimensions', val: tile.dimensions },
@@ -81,14 +130,18 @@ export default async function TileDetailPage({ params }) {
               { label: 'Usage', val: tile.usage },
             ].map((spec) => (
               <div key={spec.label} style={{ background: 'var(--color-background-secondary)', borderRadius: '8px', padding: '8px 10px' }}>
-                <div style={{ fontSize: '10px', color: 'var(--color-text-secondary)', letterSpacing: '1px', textTransform: 'uppercase' }}>{spec.label}</div>
-                <div style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-primary)' }}>{spec.val}</div>
+                <div style={{ fontSize: '10px', color: 'var(--color-text-secondary)', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                  {spec.label}
+                </div>
+                <div style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-primary)' }}>
+                  {spec.val}
+                </div>
               </div>
             ))}
           </div>
 
           <div style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '30px', color: '#b5651d', fontWeight: 700, marginBottom: '16px' }}>
-            ${tile.price} <span style={{ fontSize: '13px', color: 'var(--color-text-secondary)', fontFamily: 'DM Sans, sans-serif', fontWeight: 400 }}>/sqm</span>
+            ${tile.price} <span style={{ fontSize: '13px', color: 'var(--color-text-secondary)', fontWeight: 400 }}>/{tile.currency === 'USD' ? 'sqm' : 'unit'}</span>
           </div>
 
           <div style={{ display: 'flex', gap: '10px' }}>
@@ -101,7 +154,6 @@ export default async function TileDetailPage({ params }) {
           </div>
         </div>
       </div>
-      <div style={{ height: '32px' }} />
     </div>
   );
 }

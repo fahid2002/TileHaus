@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 import FeaturedSwiper from '@/components/FeaturedSwiper';
 import Link from 'next/link';
 
-// 1. Secure Server-Side Database Fetch
+
 async function getFeaturedTiles() {
   if (!process.env.MONGODB_URI) {
     throw new Error('Missing MONGODB_URI in environment variables');
@@ -11,7 +11,6 @@ async function getFeaturedTiles() {
   const client = await MongoClient.connect(process.env.MONGODB_URI);
   const db = client.db("TileHaus"); 
 
-  // Fetch the top 4 tiles from the database
   const rawTiles = await db.collection("tiles")
     .find({})
     .limit(4) 
@@ -19,7 +18,7 @@ async function getFeaturedTiles() {
 
   await client.close();
 
-  // Convert MongoDB ObjectIds to safe strings for the Swiper Client Component
+
   return rawTiles.map((tile) => ({
     ...tile,
     _id: tile._id.toString(),
@@ -27,9 +26,8 @@ async function getFeaturedTiles() {
   }));
 }
 
-// 2. Make the Home function `async`
 export default async function Home() {
-  // 3. Await the database fetch instead of using the local JSON
+  
   const featured = await getFeaturedTiles();
 
   return (

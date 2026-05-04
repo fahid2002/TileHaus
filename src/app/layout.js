@@ -25,10 +25,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
-      <body>
+      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', margin: 0 }}>
         <Providers>
           <Navbar />
-          <main>{children}</main>
+          
+          <main style={{ flex: 1 }}>
+            {children}
+          </main>
+          
           <Footer />
           <Toaster position="top-right" />
         </Providers>
