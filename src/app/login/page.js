@@ -32,7 +32,9 @@ export default function LoginPage() {
   return (
     <div style={{ background: 'var(--color-background-tertiary)', minHeight: '100vh', paddingBottom: '24px', paddingTop: '24px' }}>
       <div style={{
-        maxWidth: '340px', margin: '0 auto',
+        width: '100%', 
+        maxWidth: '340px', 
+        margin: '0 auto',
         padding: '28px',
         background: 'var(--color-background-primary)',
         border: '0.5px solid var(--color-border-tertiary)',
@@ -45,21 +47,45 @@ export default function LoginPage() {
 
         <form onSubmit={handleLogin}>
           <label style={{ fontSize: '12px', color: 'var(--color-text-secondary)', marginBottom: '5px', display: 'block' }}>Email address</label>
-          <Input type="email" placeholder="rahim@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required style={{ marginBottom: '12px' }} />
+          <Input 
+            type="email" 
+            placeholder="tilehaus@gmail.com" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            required 
+            style={{ 
+              marginBottom: '12px', 
+              width: '100%', 
+              fontSize: '14px', 
+              padding: '10px 12px' 
+            }} 
+          />
 
           <label style={{ fontSize: '12px', color: 'var(--color-text-secondary)', marginBottom: '5px', display: 'block' }}>Password</label>
-          <Input type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required style={{ marginBottom: '4px' }} />
+          <Input 
+            type="password" 
+            placeholder="••••••••" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            required 
+            style={{ 
+              marginBottom: '4px', 
+              width: '100%', 
+              fontSize: '14px',
+              padding: '10px 12px' 
+            }} 
+          />
 
           <Button type="submit" isLoading={loading} style={{
             width: '100%', background: '#b5651d', color: '#fff',
-            border: 'none', borderRadius: '8px', padding: '10px',
-            fontSize: '13px', fontWeight: 500, cursor: 'pointer', marginTop: '8px', marginBottom: '10px',
+            border: 'none', borderRadius: '8px', padding: '12px', 
+            fontSize: '14px', fontWeight: 500, cursor: 'pointer', marginTop: '12px', marginBottom: '10px',
           }}>
             Login
           </Button>
         </form>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '12px 0' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '14px 0' }}>
           <div style={{ flex: 1, height: '0.5px', background: 'var(--color-border-tertiary)' }} />
           <span style={{ fontSize: '11px', color: 'var(--color-text-secondary)' }}>or continue with</span>
           <div style={{ flex: 1, height: '0.5px', background: 'var(--color-border-tertiary)' }} />
@@ -68,7 +94,7 @@ export default function LoginPage() {
         <button onClick={handleGoogle} style={{
           width: '100%', background: 'var(--color-background-secondary)',
           color: 'var(--color-text-primary)', border: '0.5px solid var(--color-border-tertiary)',
-          borderRadius: '8px', padding: '9px', fontSize: '13px', cursor: 'pointer',
+          borderRadius: '8px', padding: '10px', fontSize: '13px', cursor: 'pointer',
           fontFamily: 'DM Sans, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
         }}>
           <svg width="16" height="16" viewBox="0 0 24 24">
