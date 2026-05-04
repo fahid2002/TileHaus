@@ -52,13 +52,13 @@ To run this project locally on your machine, follow these steps:
 ```bash
 git clone [https://github.com/fahid2002/TileHaus.git](https://github.com/fahid2002/TileHaus.git)
 cd TileHaus
+
 2. Install dependencies
-Bash
 npm install
+
 3. Configure Environment Variables
 Create a .env file in the root directory and add the following keys. Note: For local development, ensure your Auth URLs are set to localhost.
 
-Code snippet
 # Database
 MONGODB_URI=mongodb+srv://<your-db-user>:<password>@<cluster-url>/TileHaus
 
@@ -70,8 +70,8 @@ NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
 # Google OAuth Credentials
 GOOGLE_CLIENT_ID=your_google_client_id.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET=your_google_client_secret
+
 4. Run the development server
-Bash
 npm run dev
 Open http://localhost:3000 with your browser to see the result.
 
@@ -79,18 +79,14 @@ Open http://localhost:3000 with your browser to see the result.
 When deploying to Vercel, ensure your production Environment Variables are updated to match your live domain:
 
 BETTER_AUTH_URL = https://tile-haus.vercel.app
-
 NEXT_PUBLIC_BETTER_AUTH_URL = https://tile-haus.vercel.app
 
 (Note: You must also add the live Vercel callback URL to your Google Cloud Console Authorized Redirect URIs).
 
 📞 Contact & Author
 Fahid Hasan Ifty
-
 Email: fahidhasanifty20@gmail.com
-
 Location: Dhaka, Bangladesh
-
 WhatsApp: +88 01749573951
 
 © 2026 TileHaus. All rights reserved.
