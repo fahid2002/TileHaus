@@ -21,7 +21,7 @@ export default async function MyProfilePage() {
         display: 'flex', alignItems: 'center', gap: '18px',
       }}>
         {user.image ? (
-          <img src={user.image} alt={user.name} style={{ width: '64px', height: '64px', borderRadius: '50%', objectFit: 'cover' }} />
+          <img src={user.image} alt={user.name} suppressHydrationWarning={true} style={{ width: '64px', height: '64px', borderRadius: '50%', objectFit: 'cover' }} />
         ) : (
           <div style={{
             width: '64px', height: '64px', borderRadius: '50%',
