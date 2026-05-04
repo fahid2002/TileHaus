@@ -2,7 +2,6 @@ import { MongoClient } from 'mongodb';
 import FeaturedSwiper from '@/components/FeaturedSwiper';
 import Link from 'next/link';
 
-
 async function getFeaturedTiles() {
   if (!process.env.MONGODB_URI) {
     throw new Error('Missing MONGODB_URI in environment variables');
@@ -16,23 +15,26 @@ async function getFeaturedTiles() {
     .limit(4) 
     .toArray();
 
+  const totalTiles = await db.collection("tiles").countDocuments();
+
   await client.close();
 
-
-  return rawTiles.map((tile) => ({
+  const formattedTiles = rawTiles.map((tile) => ({
     ...tile,
     _id: tile._id.toString(),
     id: tile._id.toString(), 
   }));
+
+
+  return { featured: formattedTiles, totalTiles };
 }
 
 export default async function Home() {
-  
-  const featured = await getFeaturedTiles();
+
+  const { featured, totalTiles } = await getFeaturedTiles();
 
   return (
     <div>
-      {/* Hero */}
       <section style={{
         background: 'linear-gradient(135deg, #1c140d 0%, #2d1e0f 50%, #1a110a 100%)',
         padding: '70px 28px 60px',
@@ -81,7 +83,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Marquee */}
       <div style={{ background: '#b5651d', overflow: 'hidden', padding: '8px 0' }}>
         <div className="marquee-track">
           {[...Array(2)].map((_, i) => (
@@ -90,13 +91,12 @@ export default async function Home() {
               <span style={{ fontSize: '12px', color: '#fff', letterSpacing: '1px' }}>✦ Weekly Feature: Modern Geometric Patterns</span>
               <span style={{ fontSize: '12px', color: '#fff', letterSpacing: '1px' }}>✦ Join the Community</span>
               <span style={{ fontSize: '12px', color: '#fff', letterSpacing: '1px' }}>✦ New Arrivals: Sahara Brick Collection</span>
-              <span style={{ fontSize: '12px', color: '#fff', letterSpacing: '1px' }}>✦ Limited Stock: Cobalt Zellige</span>
+              <span style={{ fontSize: '12px', color: '#fff', letterSpacing: '1px' }}>✦ Limited Stock: Terracotta</span>
             </span>
           ))}
         </div>
       </div>
 
-      {/* Featured Tiles with Swiper */}
       <section style={{ padding: '36px 24px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '20px' }}>
           <h2 style={{
@@ -107,11 +107,9 @@ export default async function Home() {
           <Link href="/all-tiles" style={{ fontSize: '12px', color: '#b5651d', textDecoration: 'none' }}>View all →</Link>
         </div>
         
-        {/* 4. Swiper fed by real DB data! */}
         <FeaturedSwiper tiles={featured} />
       </section>
 
-      {/* Stats Strip */}
       <section style={{
         background: 'var(--color-background-primary)',
         borderTop: '0.5px solid var(--color-border-tertiary)',
@@ -123,9 +121,9 @@ export default async function Home() {
         gap: '12px',
       }}>
         {[
-          { num: '500+', label: 'Tile Designs' },
-          { num: '12', label: 'Categories' },
-          { num: '10K+', label: 'Happy Customers' },
+          { num: `${totalTiles}+`, label: 'Curated Tiles' },
+          { num: '3', label: 'Premium Materials' },
+          { num: '24/7', label: 'Online Gallery' },
         ].map((stat) => (
           <div key={stat.label}>
             <div style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '28px', fontWeight: 700, color: '#b5651d' }}>{stat.num}</div>

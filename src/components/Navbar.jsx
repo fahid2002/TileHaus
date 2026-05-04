@@ -5,11 +5,9 @@ import { Button } from '@heroui/react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
 
-// A small custom component to handle Hover and Active states
 const NavItem = ({ href, children, currentPath }) => {
   const [isHovered, setIsHovered] = useState(false);
   
-  // Check if this link is the current active page
   const isActive = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 
   return (
@@ -35,7 +33,7 @@ const NavItem = ({ href, children, currentPath }) => {
 export default function Navbar() {
   const { data: session, isPending } = useSession();
   const router = useRouter();
-  const pathname = usePathname(); // Gets the current URL path
+  const pathname = usePathname(); 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleLogout = async () => {
@@ -69,7 +67,7 @@ export default function Navbar() {
         Tile<span style={{ color: '#b5651d' }}>Haus</span>
       </Link>
 
-      {/* Nav Links with Hover and Active States */}
+      {/* Nav Links with Hover*/}
       <div style={{ display: 'flex', gap: '24px', alignItems: 'center', marginTop: '4px' }}>
         <NavItem href="/" currentPath={pathname}>Home</NavItem>
         <NavItem href="/all-tiles" currentPath={pathname}>All Tiles</NavItem>
@@ -81,8 +79,8 @@ export default function Navbar() {
       {/* Auth Area */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
         {isPending ? null : session ? (
-          // Custom Bulletproof Dropdown Container
-          <div style={{ position: 'relative' }}>
+
+<div style={{ position: 'relative' }}>
             
             {/* The Avatar / Trigger */}
             <div 

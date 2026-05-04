@@ -58,7 +58,7 @@ export default function UpdateForm({ user }) {
         border: '0.5px solid var(--color-border-tertiary)',
         borderRadius: '12px',
       }}>
-        {/* Mini profile header */}
+        {/* profile header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
           <div style={{
             width: '44px', height: '44px', borderRadius: '50%',
@@ -128,7 +128,7 @@ export default function UpdateForm({ user }) {
             </Button>
           </div>
 
-          {/* Hidden file input triggered by the Browse button */}
+          {/* Browse button */}
           <input 
             type="file" 
             accept="image/*" 

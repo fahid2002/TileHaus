@@ -24,7 +24,7 @@ export default function TileCard({ tile }) {
       onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(181,101,29,0.15)'; }}
       onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
     >
-      {/* TILE IMAGE SECTION - UPDATED */}
+      {/* TILE IMAGE SECTION*/}
       <div style={{ height: '240px', background: 'var(--color-background-secondary)', position: 'relative', overflow: 'hidden' }}>
         {tile.image ? (
           <img 
@@ -33,7 +33,7 @@ export default function TileCard({ tile }) {
             style={{ 
               width: '100%', 
               height: '100%', 
-              objectFit: 'cover' // Change to 'contain' if you don't want the edges cropped at all!
+              objectFit: 'cover' 
             }} 
           />
         ) : (
@@ -62,9 +62,10 @@ export default function TileCard({ tile }) {
               fontSize: '12px',
               color: 'var(--color-text-primary)',
               cursor: 'pointer',
-              transition: 'all 0.2s ease', /* <--- Added smooth transition */
+              transition: 'all 0.2s ease', 
             }}
-            /* Added hover effects below */
+
+            //hover
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#b5651d';
               e.currentTarget.style.color = '#ffffff';

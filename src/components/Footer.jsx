@@ -16,7 +16,7 @@ export default function Footer() {
         gap: '24px',
         marginBottom: '24px',
       }}>
-        {/* Column 1: Brand */}
+        {/*  Brand */}
         <div>
           <div style={{
             fontFamily: 'var(--font-playfair), serif',
@@ -94,7 +94,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Column 3: Contact & Direct Message */}
+        {/* Contact & Direct Message */}
         <div>
           <div style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '14px', color: '#f5ede0', marginBottom: '10px' }}>Contact Us</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
