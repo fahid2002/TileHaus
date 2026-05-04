@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export default async function middleware(request) {
+export default async function proxy(request) {
   const { pathname } = request.nextUrl;
 
   const isPrivateRoute = pathname.startsWith('/my-profile') || pathname.startsWith('/tile/');
