@@ -11,16 +11,16 @@ export default function UpdateForm({ user }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   
-  // Reference for the hidden file input
+
   const fileInputRef = useRef(null);
 
   const initials = user.name?.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2) || 'U';
 
-  // Handle direct file upload and convert to Base64
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Ensure it's actually an image
+
       if (!file.type.startsWith('image/')) {
         toast.error('Please select an image file');
         return;
@@ -28,7 +28,7 @@ export default function UpdateForm({ user }) {
 
       const reader = new FileReader();
       reader.onloadend = () => {
-        // This converts the image into a Base64 string that acts as a URL
+
         setImage(reader.result);
       };
       reader.readAsDataURL(file);
@@ -51,7 +51,8 @@ export default function UpdateForm({ user }) {
   return (
     <div style={{ background: 'var(--color-background-tertiary)', minHeight: '100vh', paddingBottom: '24px', paddingTop: '24px' }}>
       <div style={{
-        maxWidth: '400px', // Slightly wider to accommodate the new button
+        width: '100%', 
+        maxWidth: '400px', 
         margin: '0 auto', padding: '28px',
         background: 'var(--color-background-primary)',
         border: '0.5px solid var(--color-border-tertiary)',
@@ -63,7 +64,7 @@ export default function UpdateForm({ user }) {
             width: '44px', height: '44px', borderRadius: '50%',
             background: '#c9956e', display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontFamily: 'var(--font-playfair), serif', fontSize: '16px', color: '#fff',
-            // If they uploaded an image, show a preview here!
+
             backgroundImage: image ? `url(${image})` : 'none',
             backgroundSize: 'cover',
             backgroundPosition: 'center'
@@ -87,9 +88,13 @@ export default function UpdateForm({ user }) {
             type="text" 
             placeholder="Your Name" 
             value={name} 
-            size="lg" // Increased size
             onChange={(e) => setName(e.target.value)} 
-            style={{ marginBottom: '12px', height: '30px' }} 
+            style={{ 
+              marginBottom: '12px', 
+              width: '100%', 
+              fontSize: '14px', 
+              padding: '10px 12px' 
+            }} 
           />
 
           <label style={{ fontSize: '12px', color: 'var(--color-text-secondary)', marginBottom: '5px', display: 'block' }}>Photo URL or Upload</label>
@@ -99,19 +104,24 @@ export default function UpdateForm({ user }) {
               type="url" 
               placeholder="https://example.com/photo.jpg" 
               value={image} 
-              size="lg" // Increased size
               onChange={(e) => setImage(e.target.value)} 
-              style={{ flex: 1, height: '30px' }} 
+              style={{ 
+                flex: 1, 
+                fontSize: '14px', 
+                padding: '10px 12px'
+              }} 
             />
             <Button 
               type="button" 
               onClick={() => fileInputRef.current.click()} 
               style={{ 
-                height: 'auto', 
                 background: 'var(--color-background-secondary)', 
                 color: 'var(--color-text-primary)',
                 border: '1px solid var(--color-border-tertiary)',
-                borderRadius: '8px'
+                borderRadius: '8px',
+                padding: '0 16px', 
+                fontSize: '13px',
+                cursor: 'pointer'
               }}
             >
               Browse
@@ -129,9 +139,8 @@ export default function UpdateForm({ user }) {
 
           <Button type="submit" isLoading={loading} style={{
             width: '100%', background: '#b5651d', color: '#fff',
-            border: 'none', borderRadius: '8px', padding: '10px',
-            fontSize: '13px', fontWeight: 500, cursor: 'pointer', marginBottom: '8px',
-            height: '44px' // Made the save button a bit taller to match the larger inputs
+            border: 'none', borderRadius: '8px', padding: '12px', 
+            fontSize: '14px', fontWeight: 500, cursor: 'pointer', marginBottom: '8px', marginTop: '4px'
           }}>
             Save Changes
           </Button>
@@ -140,7 +149,7 @@ export default function UpdateForm({ user }) {
         <button onClick={() => router.back()} style={{
           width: '100%', background: 'transparent',
           color: 'var(--color-text-secondary)', border: 'none',
-          padding: '8px', fontSize: '12px', cursor: 'pointer',
+          padding: '8px', fontSize: '13px', cursor: 'pointer',
           fontFamily: 'DM Sans, sans-serif',
         }}>
           Cancel
